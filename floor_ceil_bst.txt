@@ -1,0 +1,101 @@
+import java.util.*;
+class Tree
+{
+  public class Node
+  {
+    int data;
+    public Node left;
+    public Node right;
+    public Node()
+    {
+      left = right = null;
+    }
+  }
+    Node root;
+    Node t1;
+    Node t2;
+    public Tree()
+    {
+      root = null;
+    }
+    Node insert1(Node root,int data)
+    {
+      if(root == null)
+      {
+        root = new Node();
+        root.left = null;
+        root.right = null;
+        root.data = data;
+        return root;
+      }
+      else
+      {
+        if(data > root.data)
+          root.right = insert1(root.right,data);
+        else if(data < root.data)
+          root.left = insert1(root.left,data);
+        return root;
+      }
+    }
+    void inorder1(Node root)
+    {
+      if(root == null)
+        return;
+      inorder1(root.left);
+      System.out.println(root.data);
+      inorder1(root.right);
+    }
+    Node floor(Node root,int key)
+    {
+      if(root == null)
+        return null;
+      if(root.data == key)
+        return root;
+      if(root.data > key)
+        return floor(root.left,key);
+      Node f = root;
+      Node ans = floor(root.right,key);
+      if(ans == null)
+        return f;
+      else
+        return ans;
+    }
+    Node ceil(Node root,int key)
+    {
+      if(root == null)
+        return null;
+      if(root.data == key)
+        return root;
+      if(root.data < key)
+        return ceil(root.right,key);
+      Node c = root;
+      Node ans = ceil(root.left,key);
+      if(ans == null)
+        return c;
+      else
+        return ans;
+    }
+}
+
+class FloorCeilBst
+{
+  public static void main(String args[])
+  {
+    Tree t = new Tree();
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int i;
+    int arr[] = new int[n];
+    for(i = 0; i < n; i++)
+    {
+      arr[i] = scan.nextInt();
+      t.root = t.insert1(t.root,arr[i]);
+    }
+    //t.inorder1(t.root);
+    int key = scan.nextInt();
+    t.t1 = t.floor(t.root,key);
+    t.t2 = t.ceil(t.root,key);
+    System.out.println("floor is "+t.t1.data);
+    System.out.println("ceil is "+t.t2.data);
+  }
+}
