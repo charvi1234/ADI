@@ -1,0 +1,54 @@
+//https://www.interviewbit.com/problems/least-common-ancestor/
+/*
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ int find(struct TreeNode*root,int data)
+ {
+     if(root==NULL)
+     return 0;
+     if(root->val==data)
+     return 1;
+     int x = find(root->left,data);
+     int y = find(root->right,data);
+     if(x==0&&y==0)
+     return 0;
+ }
+struct TreeNode* find(struct TreeNode *root,int x,int y)
+ {
+     if(root==NULL)
+     return NULL;
+     if(root->val==x||root->val==y)
+     {
+         return root;
+     }
+     struct TreeNode * left = find(root->left,x,y);
+     struct TreeNode * right = find(root->right,x,y);
+     if(left&&right)
+     return root;
+     if(left)
+     {
+     return left;
+     }
+     if(right)
+     return right;
+     else
+     return NULL;
+ }
+int Solution::lca(TreeNode* A, int B, int C) 
+{
+    int a = find(A,B);
+    int b = find(A,C);
+    struct TreeNode *node = find(A,B,C);
+    if(node==NULL)
+    return -1;
+    else if(a==1&&b==1)
+    return node->val;
+    else if(a==0||b==0)
+    return -1;
+}
