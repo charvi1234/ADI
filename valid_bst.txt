@@ -1,0 +1,36 @@
+/*
+https://www.interviewbit.com/problems/valid-binary-search-tree/
+*/
+/*
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ int check(TreeNode*root,int min,int max)
+ {
+     if(root==NULL)
+     return 1;
+     if(root->val<=min||root->val>=max)
+     {
+         return 0;
+     }
+     int x = check(root->left,min,root->val);
+     if(x)
+     {
+         int y = check(root->right,root->val,max);
+         return y;
+     }
+     else
+     return 0;
+ }
+int Solution::isValidBST(TreeNode* A) 
+{
+    int min = -2147483648;
+    int max = +2147483647;
+    int a = check(A,min,max);
+    return a;
+}
