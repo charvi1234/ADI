@@ -1,4 +1,4 @@
-https://www.interviewbit.com/problems/2-sum/
+//https://www.interviewbit.com/problems/2-sum/
 public class Solution {
     public ArrayList<Integer> twoSum(final List<Integer> A, int B) {
         ArrayList<Integer> arr = new ArrayList<Integer>();
