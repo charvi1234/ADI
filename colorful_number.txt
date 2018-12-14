@@ -1,3 +1,5 @@
+// https://www.interviewbit.com/problems/colorful-number/
+
 public class Solution {
     public int colorful(int A) {
         int i,j;
