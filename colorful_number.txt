@@ -1,0 +1,30 @@
+public class Solution {
+    public int colorful(int A) {
+        int i,j;
+        int num = A;
+        int arr[] = new int[10000];
+        int len=0;
+        int k = 0;
+        HashSet<Integer> set = new HashSet<Integer>();
+        while(num!=0)
+        {
+            arr[k] = num%10;
+            k++;
+            len++;
+            num = num/10;
+        }
+        int ans = 1;
+        for(i=0;i<len;i++)
+        {
+            for(j=i;j<len;j++)
+            {
+                ans = ans*(arr[j]);
+                if(set.contains(ans))
+                return 0;
+                set.add(ans);
+            }
+            ans = 1;
+        }
+        return 1;
+    }
+}
