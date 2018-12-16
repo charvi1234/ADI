@@ -1,0 +1,50 @@
+public class Solution {
+    public ArrayList<Integer> dNums(ArrayList<Integer> A, int k) {
+        HashMap<Integer,Integer> hmap = new HashMap<Integer,Integer>();
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        int i,count=0,m=0,t=0;
+        int len =A.size();
+        for(i=0;i<k;i++)
+        {
+            if(hmap.containsKey(A.get(i)))
+            {
+                int x = hmap.get(A.get(i));
+                x++;
+                hmap.replace(A.get(i),x);
+            }
+            else
+            {
+                hmap.put(A.get(i),1);
+                count++;
+            }
+        }
+        arr.add(count);
+        for(i=k;i<len;i++)
+        {
+            if(hmap.get(A.get(i-k)) == 1)
+            {
+                hmap.remove(A.get(i-k));
+                count--;
+            }
+            else
+            {
+                int x = hmap.get(A.get(i-k));
+                x--;
+                hmap.replace(A.get(i-k),x);
+            }
+            if(hmap.containsKey(A.get(i)))
+            {
+                int x = hmap.get(A.get(i));
+                x++;
+                hmap.replace(A.get(i),x);
+            }
+            else
+            {
+                hmap.put(A.get(i),1);
+                count++;
+            }
+            arr.add(count);
+        }
+        return arr;
+    }
+}
