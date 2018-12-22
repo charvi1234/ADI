@@ -1,0 +1,21 @@
+public class Solution {
+    public int nchoc(int A, ArrayList<Integer> B) {
+        int size = B.size();
+        int i;
+        PriorityQueue <Integer> q = new PriorityQueue<>(Collections.reverseOrder());
+        for(i=0;i<size;i++)
+        {
+            q.add(B.get(i));
+        }
+        long sum=0;
+        for(i=0;i<A;i++)
+        {
+        int x = q.poll();
+        sum = sum+x;
+        int y = (int)Math.floor(x/2);
+        q.add(y);
+        }
+        sum = sum % (1000000007);
+        return (int)sum;
+    }
+}
