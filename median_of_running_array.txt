@@ -1,0 +1,69 @@
+import java.util.Scanner;
+import java.util.*;
+class median{
+public static void addNumber(int n,PriorityQueue<Integer>min,PriorityQueue<Integer>max)
+{
+  if(max.size()==0||n<max.peek())
+  {
+    max.add(n);
+  }
+  else
+  {
+    min.add(n);
+  }
+}
+
+public static void rebalance(PriorityQueue<Integer>min,PriorityQueue<Integer>max)
+{
+  PriorityQueue<Integer>s=max.size()<min.size()?max:min;
+  PriorityQueue<Integer>l=max.size()>min.size()?max:min;
+  if(l.size()-s.size()>=2)
+  {
+    s.add(l.poll());
+  }
+}
+
+public static int findMedian(PriorityQueue<Integer>min,PriorityQueue<Integer>max)
+{
+  if(max.size()==min.size())
+  {
+    return (((max.peek())+(min.peek()))/2);
+  }
+  else if(max.size()>min.size())
+  {
+    return max.peek();
+  }
+  else
+  {
+    return min.peek();
+  }
+}
+
+
+public static void main(String args[]){
+ // int n;
+  Scanner scan = new Scanner(System.in);
+  int n=scan.nextInt();
+  int arr[]=new int[n];
+  int result[]=new int[1000];
+  int i,k=0;
+  PriorityQueue <Integer> p2=new PriorityQueue<Integer>(Collections.reverseOrder());
+  PriorityQueue <Integer> p1=new PriorityQueue<Integer>();
+  for(i=0;i<n;i++)
+  {
+    arr[i]=scan.nextInt();
+  }
+  for(i=0;i<n;i++)
+  {
+    addNumber(arr[i],p1,p2);
+    rebalance(p1,p2);
+    result[k]=findMedian(p1,p2);
+    k++;
+  }
+  for(i=0;i<k;i++)
+  {
+    System.out.println(result[i]);
+  }
+}
+}
+
