@@ -1,0 +1,38 @@
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> A, ArrayList<Integer> B) 
+    {
+        PriorityQueue<Integer> p1=new PriorityQueue<Integer>();
+        Collections.sort(A,Collections.reverseOrder());
+        Collections.sort(B,Collections.reverseOrder());
+        int n,x=0;
+        int i,j,sum;
+        n=A.size();
+        for(i=0;i<A.size();i++)
+        {
+            for(j=0;j<B.size();j++)
+            {
+                sum=A.get(i)+B.get(j);
+                if(p1.size()<n)
+                {
+                    p1.add(sum);
+                }
+                else
+                {
+                    if(sum>p1.peek())
+                    {
+                      p1.remove();
+                      p1.add(sum);
+                    }
+                    else
+                    break;
+                }
+            }
+        }
+        ArrayList<Integer> l = new ArrayList<Integer>();
+        for(i=0;i<n;i++)
+        {
+            l.add(0,p1.poll());
+        }
+        return l;
+    }
+}
