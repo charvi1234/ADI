@@ -1,0 +1,62 @@
+import java.util.*;
+       class node {
+            node[] arr;
+            int pr;
+            node() {
+                arr = new node[26];
+                pr = -1;
+            }
+        }
+class trie{
+  node root1;
+    public trie()
+    {
+        root1 = new node();
+    }
+    public void insert(String str,int p)
+    {
+      node root = root1;
+        for(int i=0;i<str.length();i++)
+        {
+        if(root.arr[str.charAt(i)-'a'] == null)
+        {
+            root.arr[str.charAt(i)-'a'] = new node();
+        }
+        root = root.arr[str.charAt(i)-'a'];
+        root.pr = Math.max(root.pr,p);
+        }
+    }
+    public int getans(String str)
+    {
+      node root = root1;
+        for(int i=0;i<str.length();i++)
+        {
+        if(root.arr[str.charAt(i)-'a'] == null)
+        return -1;
+        root=root.arr[str.charAt(i)-'a'];
+        }
+        return root.pr;
+    }
+}
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int n1 = scan.nextInt();
+    int n2 = scan.nextInt();
+    trie t = new trie();
+    while(n1!=0)
+    {
+      String str = scan.next();
+      int p = scan.nextInt();
+      t.insert(str,p);
+      n1--;
+    }
+    while(n2!=0)
+    {
+        String str2 = scan.next();
+        System.out.println(t.getans(str2));
+        n2--;
+    }
+
+    }
+}
