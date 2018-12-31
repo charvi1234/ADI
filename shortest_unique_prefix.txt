@@ -1,3 +1,4 @@
+//https://www.interviewbit.com/problems/shortest-unique-prefix/
 class trie{
     int freq;
     boolean endofword;
