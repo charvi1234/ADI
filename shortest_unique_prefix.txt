@@ -1,0 +1,67 @@
+class trie{
+    int freq;
+    boolean endofword;
+    Map<Character,trie> m;
+    public trie()
+    {
+        m = new HashMap<Character,trie>();
+    }
+    public trie create()
+    {
+        trie t = new trie();
+        t.endofword=false;
+        t.freq=0;
+        return t;
+    }
+    public void insert(trie node,String str)
+    {
+        trie root = node;
+        int i;
+        for(i=0;i<str.length();i++)
+        {
+            root.freq=root.freq+1;
+            if(!root.m.containsKey(str.charAt(i)))
+            {
+                root.m.put(str.charAt(i),create());
+            }
+            root=root.m.get(str.charAt(i));
+        }
+        root.endofword=true;
+    }
+    public String prefix(trie root,String s)
+    {
+        int n = s.length();
+        String pre = "";
+        pre = pre+s.charAt(0);
+        trie node = root;
+        node=node.m.get(s.charAt(0));
+        int i ;
+        for(i=1;i<n;i++)
+        {
+            if(node.freq == 1)
+            {
+            return pre;
+            }
+            pre = pre+s.charAt(i);
+            node=node.m.get(s.charAt(i));
+        }
+        return pre;
+    }
+}
+public class Solution {
+    public ArrayList<String> prefix(ArrayList<String> A) {
+        ArrayList<String> arr = new ArrayList<>();
+        String ans = new String();
+        int i;
+        trie node = new trie();
+        for(i=0;i<A.size();i++)
+        {
+            node.insert(node,A.get(i));
+        }
+        for(i=0;i<A.size();i++)
+        {
+            arr.add(node.prefix(node,A.get(i)));
+        }
+    return arr;
+    }
+}
