@@ -1,0 +1,113 @@
+{
+//Initial Template for Java
+import java.util.Scanner;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class Node
+{
+    int data;
+    Node left, right;
+    
+    Node(int key)
+    {
+        data = key;
+        left = right = null;
+    }
+}
+class BinaryTree
+{
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            HashMap<Integer, Node> m = new HashMap<Integer, Node>();
+            int n = sc.nextInt();
+            Node root = null;
+            while(n-- > 0)
+            {
+                int n1 = sc.nextInt();
+                int n2 = sc.nextInt();
+	        	char lr= sc.next().charAt(0);
+				
+                
+                Node parent = m.get(n1);
+                if (parent == null)
+                {
+                    parent = new Node(n1);
+                    m.put(n1, parent);
+                    if (root == null)
+                        root = parent;
+                }
+                Node child = new Node(n2);
+                if (lr == 'L')
+                    parent.left = child;
+                else
+                    parent.right = child;
+                m.put(n2, child);
+            }
+          System.out.println();
+        }
+    }
+}
+}            
+            GFG gfg = new GFG();
+            gfg.verticalOrder(root);
+  
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+//User function Template for Java
+/* A binary tree node has data, pointer to left child
+   and a pointer to right child 
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+} */
+class GFG
+{
+    static void func(Node root,int hd,TreeMap<Integer,ArrayList<Integer>> hmap,ArrayList<Integer>ar)
+    {
+        if(root==null)
+        return;
+        if(hmap.containsKey(hd))
+        {
+            ar = hmap.get(hd);
+            ar.add(root.data);
+            hmap.replace(hd,ar);
+        }
+        else
+        {
+            hmap.put(hd,new ArrayList<Integer>());
+            ar = hmap.get(hd);
+            ar.add(root.data);
+            hmap.replace(hd,ar);
+        }
+        func(root.left,hd-1,hmap,ar);
+        func(root.right,hd+1,hmap,ar);
+    }
+    static void verticalOrder(Node root)
+    {
+        TreeMap<Integer,ArrayList<Integer>> hmap = new TreeMap<Integer,ArrayList<Integer>>();
+        int hd = 0;
+        ArrayList<Integer> arr = new ArrayList<>();
+        ArrayList<Integer> al = new ArrayList<>();
+        func(root,hd,hmap,arr);
+        for(Map.Entry<Integer,ArrayList<Integer>> entry : hmap.entrySet())
+        {
+            al = entry.getValue();
+            for (int i =0; i < al.size(); i++) 
+            {
+            System.out.print(al.get(i) + " ");
+            }
+        }
+    }
+}
