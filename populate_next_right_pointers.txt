@@ -1,3 +1,5 @@
+//https://www.interviewbit.com/problems/populate-next-right-pointers-tree/
+
 /**
  * Definition for binary tree with next pointer.
  * public class TreeLinkNode {
