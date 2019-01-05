@@ -1,0 +1,32 @@
+/**
+ * Definition for binary tree with next pointer.
+ * public class TreeLinkNode {
+ *     int val;
+ *     TreeLinkNode left, right, next;
+ *     TreeLinkNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        Queue<TreeLinkNode> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        while(q.peek()!=null)
+        {
+            int size = q.size()-1;
+            while(size>0)
+            {
+                TreeLinkNode t = q.poll();
+                t.next=q.peek();
+                if(t.left!=null)
+                q.add(t.left);
+                if(t.right!=null)
+                q.add(t.right);
+                size--;
+            }
+            q.poll();
+            q.add(null);
+        }
+        
+    }
+}
