@@ -1,3 +1,33 @@
+/*
+The mall management is trying to figure out what was the busiest moment in the mall in the last year.
+You are given data from the door detectors: each data entry includes a timestamp (seconds in Unix Epoch format), an amount of people and whether they entered or exited.
+Example of a data entry: (time, amount of people, E(enter)/X(exit)
+1440084737   4  E  
+Find what was the busiest period in the mall on the last year. Print two Epoch timestamps representing the beginning and end of that period. You may assume that the data your are given is accurate and that each second with entries or exits is recorded. Implement the most efficient solution possible.
+
+Please note: 
+1. There may be many door detectors so there may be multiple entries for same timestamp.
+2. data is not necessarily in sorted order of timestamp.
+
+input format:
+    number n followed by n observations - each observation is long, int, String (timestamp, count, E/X)
+Output :
+  long long (beginning of period and end of period)
+
+Ex:
+Input
+6
+1472568095461 59 E
+ 1472620192731  50 X
+ 1472630264983  5 X
+ 1472635488880 59 E
+ 1472641430597 60 X
+1472635488880 2 X
+Output: 
+
+1472635488880 1472641430597
+*/
+
 import java.util.*;
 // Other imports go here
 // Do NOT change the class name
