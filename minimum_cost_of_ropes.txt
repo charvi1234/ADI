@@ -1,3 +1,5 @@
+//https://practice.geeksforgeeks.org/problems/minimum-cost-of-ropes/0
+
 /*package whatever //do not write package name here */
 
 import java.util.*;
