@@ -1,0 +1,68 @@
+/* IMPORTANT: Multiple classes and nested static classes are supported */
+
+/*
+ * uncomment this if you want to read input.
+//imports for BufferedReader
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+//import for Scanner and other utility classes
+import java.util.*;
+*/
+
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+import java.util.*;
+class TestClass {
+    public static boolean cleft(int pos,int arr[])
+    {
+        if(pos==0)
+        return true;
+        if(arr[pos-1]==1)
+        return true;
+        return false;
+    }
+    public static boolean cright(int pos,int arr[])
+    {
+        if(pos==arr.length-1)
+        return true;
+        if(arr[pos+1]==1)
+        return true;
+        return false;
+    }
+    public static void main(String args[] ) throws Exception {
+        int t;
+        Scanner scan = new Scanner(System.in);
+        t = scan.nextInt();
+        int i,j,k,z;
+        for(i=0;i<t;i++)
+        {
+            int l,h;
+            l = scan.nextInt();
+            h= scan.nextInt();
+            int arr[] = new int[l];
+            int carr[]= new int[l];
+            for(j=0;j<l;j++)
+            {
+            arr[j]=scan.nextInt();
+            carr[j]=arr[j];
+            }
+            for(j=0;j<h;j++)
+            {
+                for(k=0;k<l;k++)
+                {
+                    if(cleft(k,carr)&&cright(k,carr))
+                    {
+                        arr[k]=1;
+                    }
+                    else
+                    arr[k]=0;
+                }
+                for(z=0;z<l;z++)
+                carr[z]=arr[z];
+            }
+            for(z=0;z<l;z++)
+            System.out.print(carr[z]+" ");
+            System.out.println("");
+        }
+    }
+}
