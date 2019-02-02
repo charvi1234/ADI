@@ -1,3 +1,5 @@
+//https://www.hackerearth.com/challenge/hiring/oyo-rooms-ruby-challenge/algorithm/i-demand-trial-by-combat-13/
+
 /* IMPORTANT: Multiple classes and nested static classes are supported */
 
 /*
