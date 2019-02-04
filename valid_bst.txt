@@ -1,6 +1,5 @@
-/*
-https://www.interviewbit.com/problems/valid-binary-search-tree/
-*/
+//https://www.interviewbit.com/problems/valid-binary-search-tree/
+
 /*
  * Definition for binary tree
  * struct TreeNode {
