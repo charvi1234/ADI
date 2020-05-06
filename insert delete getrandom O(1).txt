@@ -1,3 +1,5 @@
+/* https://leetcode.com/problems/insert-delete-getrandom-o1/ */
+
 class RandomizedSet {
     HashMap<Integer, Integer> indexes;
     List<Integer> list;
