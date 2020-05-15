@@ -1,0 +1,58 @@
+/* https://leetcode.com/problems/first-unique-number/ */
+
+class FirstUnique {
+    
+    TreeMap<Integer, Integer> map = new TreeMap<>();
+    Queue<Integer> q = new LinkedList<>();
+    public FirstUnique(int[] nums) {
+        map = new TreeMap<>();
+        for(int i = 0; i < nums.length; i++)
+        {
+            if(map.containsKey(nums[i]))
+            {
+                int freq = map.get(nums[i]);
+                freq++;
+                map.replace(nums[i],freq);
+            }
+            else
+            {
+                map.put(nums[i],1);
+                q.add(nums[i]);
+            }
+        }
+    }
+    
+    public int showFirstUnique() {
+        while(!q.isEmpty())
+        {
+            int val = q.peek();
+            if(map.get(val) == 1)
+            {
+                return val;
+            }
+            q.poll();
+        }
+        return -1;
+    }
+    
+    public void add(int value) {
+        if(map.containsKey(value))
+        {
+            int freq = map.get(value);
+            freq++;
+            map.replace(value,freq);
+        }
+        else
+        {
+            q.add(value);
+            map.put(value,1);
+        }
+    }
+}
+
+/**
+ * Your FirstUnique object will be instantiated and called as such:
+ * FirstUnique obj = new FirstUnique(nums);
+ * int param_1 = obj.showFirstUnique();
+ * obj.add(value);
+ */
